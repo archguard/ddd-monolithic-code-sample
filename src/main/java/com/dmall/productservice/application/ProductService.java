@@ -25,4 +25,8 @@ public class ProductService {
     public Product save(Product product) {
         return repository.findById(repository.save(product));
     }
+
+    public boolean isProductExist(String name) {
+        return repository.findAll().stream().anyMatch(product -> product.getName().equals(name));
+    }
 }
