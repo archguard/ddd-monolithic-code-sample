@@ -69,6 +69,21 @@ public class ProductController {
         if (newProduct.getPrice() != null) {
             oldProduct.setPrice(newProduct.getPrice());
         }
+        if (newProduct.getProductPdfUrl() != null) {
+            // validate pdf url, if valida, update url
+            if (newProduct.isProductPdfUrlValid()) {
+                oldProduct.setProductPdfUrl(newProduct.getProductPdfUrl());
+            }
+        }
         productService.save(oldProduct);
+    }
+
+    // 产品删除，只是将产品的状态改为删除
+    @ApiOperation("delete product")
+    @RequestMapping(value = "/{productId}", method = RequestMethod.DELETE)
+    public void deleteProduct(@PathVariable("productId") final Long productId){
+        Product product = productService.getProductsById(productId);
+        product.setDeleted(true);
+        productService.save(product);
     }
 }
