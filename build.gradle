@@ -10,7 +10,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
+//        classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
         classpath('org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.0.1.RELEASE')
     }
 }
@@ -29,11 +29,11 @@ jar {
     version = "${version}"
 }
 
-docker {
-    name "${project.group}/${jar.baseName}"
-    files jar.archivePath
-    buildArgs(['JAR_FILE': "${jar.archiveName}"])
-}
+//docker {
+//    name "${project.group}/${jar.baseName}"
+//    files jar.archivePath
+//    buildArgs(['JAR_FILE': "${jar.archiveName}"])
+//}
 
 repositories {
     maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
@@ -73,7 +73,7 @@ dependencyManagement {
     }
 }
 
-contracts {
-    packageWithBaseClasses = 'com.dmall.productservice.contractTest'
-    contractsDslDir = project.file("api")
-}
+//contracts {
+//    packageWithBaseClasses = 'com.dmall.productservice.contractTest'
+//    contractsDslDir = project.file("api")
+//}
